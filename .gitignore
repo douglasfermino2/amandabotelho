@@ -1,0 +1,8 @@
+# Temporary and scratch files
+scratch/
+node_modules/
+tmp_profile/
+*.py
+render_favicon.html
+.DS_Store
+Thumbs.db
