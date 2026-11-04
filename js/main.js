@@ -100,68 +100,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 3. Facial Anatomical Zones Interactive Data (with WAI-ARIA tablist & arrow keys)
-  const zoneData = {
-    superior: {
-      title: "Terço Superior Facial",
-      tag: "Olhar & Testa",
-      desc: "Região correspondente à fronte (testa), glabela (entre as sobrancelhas) e área periorbital. O foco é suavizar linhas de expressão mímicas sem congelar o rosto, promovendo um arqueamento gracioso e olhar descansado.",
-      benefits: [
-        "Suavização de rugas na testa e pés de galinha",
-        "Elevação e arqueamento sutil de sobrancelhas",
-        "Tratamento preventivo de linhas estáticas",
-        "Aparência serena, jovem e descansada"
-      ],
-      procedures: "Toxina Botulínica (Botox) • Skinbooster • Fios de Estímulo"
-    },
-    medio: {
-      title: "Terço Médio Facial",
-      tag: "Malar & Olheiras",
-      desc: "Área de projeção das maçãs do rosto (zigomático), olheiras e fossa canina. A estruturação desta zona é o segredo do efeito 'Top Model Look' e sustentação de todo o rosto, prevenindo a queda tecidual.",
-      benefits: [
-        "Reposição do volume malar e sustentação",
-        "Atenuação de olheiras profundas e cansaço",
-        "Efeito 'Lifting' imediato na face média",
-        "Contorno jovial e luminoso dos traços"
-      ],
-      procedures: "Preenchimento com Ácido Hialurônico (MD Codes) • Bioestimuladores • Fios de Tração"
-    },
-    inferior: {
-      title: "Terço Inferior & Cervical",
-      tag: "Papada, Mandíbula & Lábios",
-      desc: "Compreende a linha da mandíbula, mento (queixo), lábios e a região submentoniana (papada). É onde alcançamos a maior definição de contorno e harmonia no perfil facial com a Lipo de Papada HD e escultura labial.",
-      benefits: [
-        "Eliminação definitiva do excesso de papada",
-        "Definição nítida da linha da mandíbula e queixo",
-        "Escultura e hidratação labial proporcional",
-        "Melhoria marcante do perfil facial e jovialidade"
-      ],
-      procedures: "Lipoaspiração Mecânica de Papada • Preenchimento Labial/Mento • Bioestimulador de Pescoço"
-    },
-    sorriso: {
-      title: "Odontologia, Prótese 12h & Cirurgia Oral",
-      tag: "Estética, Reabilitação & Siso",
-      desc: "Cuidado odontológico completo aliando estética, cirurgia oral segura e reabilitação rápida. Da Prótese Total confeccionada e entregue em menos de 12 horas (tudo em 1 dia) à Cirurgia de Siso humanizada, Clínico Geral e Lentes de Porcelana.",
-      benefits: [
-        "Prótese Total em 1 Dia: entrega expressa em menos de 12 horas",
-        "Cirurgia de Siso segura sob anestesia local e pós-operatório assistido",
-        "Clínico Geral completo: check-up, profilaxia (limpeza) e restaurações",
-        "Lentes de Contato em Porcelana, Clareamento e Sorriso Gengival"
-      ],
-      procedures: "Prótese Total (< 12h) • Cirurgia de Siso • Clínico Geral • Lentes em Porcelana & Clareamento"
-    }
-  };
-
+  // 3. Facial Anatomical Zones Interactive Tabs (Static HTML Panels for SEO/GEO/AEO + WAI-ARIA tablist)
   const zoneBtns = document.querySelectorAll('.zone-btn');
-  const zoneDisplayCard = document.getElementById('zoneDisplayCard');
-  const zoneTitleMain = document.getElementById('zoneTitleMain');
-  const zoneBadgeTag = document.getElementById('zoneBadgeTag');
-  const zoneDescription = document.getElementById('zoneDescription');
-  const zoneBenefitsList = document.getElementById('zoneBenefitsList');
-  const zoneProcedures = document.getElementById('zoneProcedures');
-  const zoneWhatsappBtn = document.getElementById('zoneWhatsappBtn');
+  const zonePanels = document.querySelectorAll('.zone-display-card[data-zone-panel]');
 
   function activateZone(btn) {
+    const zoneKey = btn.getAttribute('data-zone');
+
     zoneBtns.forEach(b => {
       const isSelected = b === btn;
       b.classList.toggle('active', isSelected);
@@ -169,31 +114,10 @@ document.addEventListener('DOMContentLoaded', () => {
       b.tabIndex = isSelected ? 0 : -1;
     });
 
-    if (zoneDisplayCard && btn.id) {
-      zoneDisplayCard.setAttribute('aria-labelledby', btn.id);
-    }
-
-    const zoneKey = btn.getAttribute('data-zone');
-    const data = zoneData[zoneKey];
-
-    if (data && zoneTitleMain) {
-      zoneTitleMain.textContent = data.title;
-      zoneBadgeTag.textContent = data.tag;
-      zoneDescription.textContent = data.desc;
-      zoneProcedures.textContent = data.procedures;
-
-      if (zoneWhatsappBtn) {
-        const msg = encodeURIComponent(`Olá, Dra. Amanda! Gostaria de avaliar especificamente a região do ${data.title}.`);
-        zoneWhatsappBtn.href = `https://wa.me/5511999901831?text=${msg}`;
-      }
-
-      zoneBenefitsList.innerHTML = '';
-      data.benefits.forEach(b => {
-        const li = document.createElement('li');
-        li.innerHTML = `<i class="fa-solid fa-circle-check" aria-hidden="true"></i> ${b}`;
-        zoneBenefitsList.appendChild(li);
-      });
-    }
+    zonePanels.forEach(panel => {
+      const isMatch = panel.getAttribute('data-zone-panel') === zoneKey;
+      panel.hidden = !isMatch;
+    });
   }
 
   zoneBtns.forEach((btn, idx) => {

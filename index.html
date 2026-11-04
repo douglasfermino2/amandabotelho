@@ -52,11 +52,14 @@
   <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
   <meta name="apple-mobile-web-app-title" content="Dra. Amanda Botelho">
   <link rel="manifest" href="site.webmanifest">
+  <link rel="llms-txt" href="https://amandabotelho.com.br/llms.txt">
   <meta name="theme-color" content="#FAF7F2">
 
-  <!-- Google Fonts & Font Awesome Icons -->
+  <!-- Google Fonts & Font Awesome Icons (Direct link to eliminate CSS @import waterfall) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <!-- Stylesheet -->
@@ -206,7 +209,7 @@
           "https://www.instagram.com/dra.amandabotelho/"
         ],
         "knowsAbout": [
-          "Harmonização Orofacial",
+          "Harmonização Orofacial (Resolução CFO 198/2019)",
           "Lipoaspiração Mecânica de Papada",
           "Toxina Botulínica",
           "Preenchimento com Ácido Hialurônico",
@@ -214,20 +217,99 @@
           "Prótese Total em 1 Dia (12 horas)",
           "Cirurgia de Terceiros Molares (Siso)",
           "Odontologia Estética e Clínica Geral"
+        ],
+        "hasCredential": [
+          {
+            "@type": "EducationalOccupationalCredential",
+            "credentialCategory": "Registro Profissional Odontológico",
+            "name": "CROSP 146.264 — Conselho Regional de Odontologia de São Paulo",
+            "recognizedBy": {
+              "@type": "Organization",
+              "name": "Conselho Regional de Odontologia de São Paulo (CRO-SP)",
+              "url": "https://www.crosp.org.br/"
+            }
+          },
+          {
+            "@type": "EducationalOccupationalCredential",
+            "credentialCategory": "Registro de Clínica Odontológica",
+            "name": "CROSP PJ 033.654 — Conselho Regional de Odontologia de São Paulo",
+            "recognizedBy": {
+              "@type": "Organization",
+              "name": "Conselho Regional de Odontologia de São Paulo (CRO-SP)",
+              "url": "https://www.crosp.org.br/"
+            }
+          }
         ]
       },
       {
-        "@type": "WebPage",
+        "@type": ["MedicalWebPage", "WebPage"],
         "@id": "https://amandabotelho.com.br/#webpage",
         "url": "https://amandabotelho.com.br/",
         "name": "Dra. Amanda Botelho | Harmonização & Odontologia em Alphaville",
         "inLanguage": "pt-BR",
+        "datePublished": "2026-01-15",
         "dateModified": "2026-11-04",
+        "lastReviewed": "2026-11-04",
+        "reviewedBy": { "@id": "https://amandabotelho.com.br/#doctor" },
         "about": { "@id": "https://amandabotelho.com.br/#clinic" },
+        "breadcrumb": { "@id": "https://amandabotelho.com.br/#breadcrumbs" },
+        "citation": [
+          "https://website.cfo.org.br/ (Conselho Federal de Odontologia — Resolução CFO-198/2019)",
+          "https://www.crosp.org.br/ (Conselho Regional de Odontologia de São Paulo — CRO-SP)",
+          "https://www.gov.br/anvisa/pt-br (Agência Nacional de Vigilância Sanitária — ANVISA)"
+        ],
         "speakable": {
           "@type": "SpeakableSpecification",
           "cssSelector": [".hero-headline", ".hero-lead", ".about-text", ".faq-answer"]
         }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://amandabotelho.com.br/#breadcrumbs",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Início",
+            "item": "https://amandabotelho.com.br/#inicio"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Procedimentos & Comparativo",
+            "item": "https://amandabotelho.com.br/#procedimentos"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Guia Anatômico Facial",
+            "item": "https://amandabotelho.com.br/#zonas-faciais"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "Simulador de Protocolo",
+            "item": "https://amandabotelho.com.br/#simulador"
+          },
+          {
+            "@type": "ListItem",
+            "position": 5,
+            "name": "Dra. Amanda Botelho (CROSP 146.264)",
+            "item": "https://amandabotelho.com.br/#sobre"
+          },
+          {
+            "@type": "ListItem",
+            "position": 6,
+            "name": "Clínica em Alphaville",
+            "item": "https://amandabotelho.com.br/#clinica"
+          },
+          {
+            "@type": "ListItem",
+            "position": 7,
+            "name": "Perguntas Frequentes",
+            "item": "https://amandabotelho.com.br/#faq"
+          }
+        ]
       },
       {
         "@type": "FAQPage",
@@ -339,6 +421,7 @@
     </div>
   </header>
 
+  <main id="conteudo-principal">
   <!-- Hero Section -->
   <section class="hero-section" id="inicio">
     <div class="container">
@@ -473,7 +556,7 @@
 
       <div class="treatments-grid">
         <!-- Treatment 1: Lipo de Papada HD -->
-        <div class="treatment-card" data-category="lipo">
+        <article class="treatment-card" data-category="lipo">
           <div class="treatment-img-box">
             <img src="assets/papada.jpg" alt="Lipoaspiração Mecânica de Papada HD em Alphaville" width="600" height="440" loading="lazy" decoding="async">
             <span class="treatment-tag">Destaque Clínico</span>
@@ -497,10 +580,10 @@
               </a>
             </div>
           </div>
-        </div>
+        </article>
 
         <!-- Treatment 2: Botox Facial -->
-        <div class="treatment-card" data-category="botox">
+        <article class="treatment-card" data-category="botox">
           <div class="treatment-img-box">
             <img src="assets/botox.jpg" alt="Toxina Botulínica Botox Facial em Alphaville" width="600" height="440" loading="lazy" decoding="async">
             <span class="treatment-tag">Rejuvenescimento</span>
@@ -525,10 +608,10 @@
               </a>
             </div>
           </div>
-        </div>
+        </article>
 
         <!-- Treatment 3: Preenchimento Labial & Full Face -->
-        <div class="treatment-card" data-category="preenchimento">
+        <article class="treatment-card" data-category="preenchimento">
           <div class="treatment-img-box">
             <img src="assets/labios.jpg" alt="Preenchimento com Ácido Hialurônico e Labial" width="600" height="440" loading="lazy" decoding="async">
             <span class="treatment-tag">Escultura Facial</span>
@@ -553,10 +636,10 @@
               </a>
             </div>
           </div>
-        </div>
+        </article>
 
         <!-- Treatment 4: Bioestimuladores de Colágeno -->
-        <div class="treatment-card" data-category="bioestimulador">
+        <article class="treatment-card" data-category="bioestimulador">
           <div class="treatment-img-box">
             <img src="assets/bioestimulador.jpg" alt="Bioestimuladores de Colágeno Sculptra Radiesse" width="600" height="440" loading="lazy" decoding="async">
             <span class="treatment-tag">Firmeza & Sustentação</span>
@@ -581,10 +664,10 @@
               </a>
             </div>
           </div>
-        </div>
+        </article>
 
         <!-- Treatment 5: Fios de PDO -->
-        <div class="treatment-card" data-category="bioestimulador">
+        <article class="treatment-card" data-category="bioestimulador">
           <div class="treatment-img-box">
             <img src="assets/fios_pdo.jpg" alt="Fios de Lifting Facial e Estímulo" width="600" height="440" loading="lazy" decoding="async">
             <span class="treatment-tag">Efeito Lifting</span>
@@ -609,10 +692,10 @@
               </a>
             </div>
           </div>
-        </div>
+        </article>
 
         <!-- Treatment 6: Odontologia Estética & Lentes -->
-        <div class="treatment-card" data-category="odonto">
+        <article class="treatment-card" data-category="odonto">
           <div class="treatment-img-box">
             <img src="assets/sorriso.jpg" alt="Odontologia Estética Lentes de Contato e Clareamento" width="600" height="440" loading="lazy" decoding="async">
             <span class="treatment-tag">Harmonia do Sorriso</span>
@@ -637,10 +720,10 @@
               </a>
             </div>
           </div>
-        </div>
+        </article>
 
         <!-- Treatment 7: Prótese Total Express (Entrega < 12h) -->
-        <div class="treatment-card" data-category="odonto">
+        <article class="treatment-card" data-category="odonto">
           <div class="treatment-img-box">
             <img src="assets/protese_total.jpg" alt="Prótese Total em 1 Dia entregue em menos de 12 horas em Alphaville" width="600" height="440" loading="lazy" decoding="async">
             <span class="treatment-tag">Entrega em até 12h</span>
@@ -665,10 +748,10 @@
               </a>
             </div>
           </div>
-        </div>
+        </article>
 
         <!-- Treatment 8: Cirurgia de Siso (Terceiros Molares) -->
-        <div class="treatment-card" data-category="odonto siso-clinico">
+        <article class="treatment-card" data-category="odonto siso-clinico">
           <div class="treatment-img-box">
             <img src="assets/siso.jpg" alt="Cirurgia de Extração de Siso Segura em Alphaville" width="600" height="440" loading="lazy" decoding="async">
             <span class="treatment-tag">Cirurgia Segura</span>
@@ -693,10 +776,10 @@
               </a>
             </div>
           </div>
-        </div>
+        </article>
 
         <!-- Treatment 9: Clínico Geral & Prevenção Odontológica -->
-        <div class="treatment-card" data-category="odonto siso-clinico">
+        <article class="treatment-card" data-category="odonto siso-clinico">
           <div class="treatment-img-box">
             <img src="assets/clinico_geral.jpg" alt="Atendimento Odontológico Clínico Geral e Prevenção em Alphaville" width="600" height="440" loading="lazy" decoding="async">
             <span class="treatment-tag">Saúde & Prevenção</span>
@@ -721,8 +804,106 @@
               </a>
             </div>
           </div>
-        </div>
+        </article>
       </div>
+
+      <!-- Structured Procedure Comparison Table (AEO Featured Snippet Ready - Collapsed by Default) -->
+      <details class="comparison-table-wrapper">
+        <summary class="comparison-table-summary">
+          <span class="summary-label">
+            <i class="fa-solid fa-table-list" aria-hidden="true"></i>
+            Ver quadro comparativo de tempo de sessão, anestesia e recuperação
+          </span>
+          <i class="fa-solid fa-chevron-down summary-chevron" aria-hidden="true"></i>
+        </summary>
+        <div class="comparison-table-body">
+          <h3 class="comparison-table-title">Quadro Comparativo de Procedimentos, Anestesia e Tempo de Recuperação</h3>
+          <p class="comparison-table-desc">
+            A Harmonização Orofacial e a Odontologia Integrada compreendem procedimentos clínicos e cirúrgicos
+            regulamentados pelo Conselho Federal de Odontologia (Resolução CFO-198/2019), realizados em consultório sob
+            anestesia local ou tópica para reabilitar a estética facial e a função mastigatória com segurança.
+          </p>
+          <div class="table-scroll-container">
+            <table class="procedures-comparison-table">
+            <caption>Resumo clínico dos procedimentos realizados pela Dra. Amanda Botelho (CROSP 146.264) em Alphaville</caption>
+            <thead>
+              <tr>
+                <th scope="col">Procedimento</th>
+                <th scope="col">Indicação Principal</th>
+                <th scope="col">Tempo de Sessão</th>
+                <th scope="col">Anestesia</th>
+                <th scope="col">Entrega / Durabilidade</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Lipoaspiração de Papada HD</th>
+                <td>Remoção definitiva de gordura submentoniana e contorno mandibular</td>
+                <td>~60 minutos</td>
+                <td>Local</td>
+                <td>Resultado imediato / Definitivo</td>
+              </tr>
+              <tr>
+                <th scope="row">Prótese Total em 1 Dia (Express)</th>
+                <td>Reabilitação oral completa, mastigação e suporte labial</td>
+                <td>Protocolo Dia Único</td>
+                <td>Não invasivo</td>
+                <td>Entregue em menos de 12 horas</td>
+              </tr>
+              <tr>
+                <th scope="row">Cirurgia de Siso (3ºs Molares)</th>
+                <td>Extração segura de sisos inclusos, semi-inclusos ou erupcionados</td>
+                <td>~40 a 60 minutos</td>
+                <td>Local de alta eficácia</td>
+                <td>Pós-operatório assistido</td>
+              </tr>
+              <tr>
+                <th scope="row">Clínico Geral &amp; Prevenção</th>
+                <td>Check-up digital, profilaxia (limpeza) e restaurações em resina</td>
+                <td>~45 a 60 minutos</td>
+                <td>Tópica / Local (se necessário)</td>
+                <td>Manutenção semestral</td>
+              </tr>
+              <tr>
+                <th scope="row">Toxina Botulínica (Botox)</th>
+                <td>Suavização de rugas dinâmicas, bruxismo e sorriso gengival</td>
+                <td>~30 minutos</td>
+                <td>Tópica</td>
+                <td>4 a 6 meses</td>
+              </tr>
+              <tr>
+                <th scope="row">Preenchimento com Ácido Hialurônico</th>
+                <td>Escultura labial, mento, mandíbula, malar e olheiras</td>
+                <td>~45 minutos</td>
+                <td>Local / Tópica</td>
+                <td>12 a 18 meses</td>
+              </tr>
+              <tr>
+                <th scope="row">Bioestimuladores de Colágeno</th>
+                <td>Tratamento de flacidez facial e cervical (Sculptra / Radiesse)</td>
+                <td>~40 minutos</td>
+                <td>Local</td>
+                <td>Até 24 meses</td>
+              </tr>
+              <tr>
+                <th scope="row">Fios de Sustentação (PDO)</th>
+                <td>Tração do terço inferior e estímulo dérmico localizado</td>
+                <td>~50 minutos</td>
+                <td>Local</td>
+                <td>12 a 18 meses</td>
+              </tr>
+              <tr>
+                <th scope="row">Lentes de Porcelana &amp; Clareamento</th>
+                <td>Design do sorriso com laminados cerâmicos e clareamento</td>
+                <td>2 a 3 sessões</td>
+                <td>Local / Não invasivo</td>
+                <td>Longa duração</td>
+              </tr>
+            </tbody>
+            </table>
+          </div>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -743,7 +924,7 @@
       <div class="zones-grid">
         <!-- Zone Selector Buttons -->
         <div class="zone-selector-list" role="tablist" aria-label="Terços anatômicos faciais">
-          <button type="button" class="zone-btn active" role="tab" id="tab-zone-superior" aria-selected="true" aria-controls="zoneDisplayCard" tabindex="0" data-zone="superior">
+          <button type="button" class="zone-btn active" role="tab" id="tab-zone-superior" aria-selected="true" aria-controls="panel-zone-superior" tabindex="0" data-zone="superior">
             <div class="zone-btn-left">
               <h4>1. Terço Superior</h4>
               <p>Testa, glabela, sobrancelhas e olhar descansado</p>
@@ -751,7 +932,7 @@
             <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
           </button>
 
-          <button type="button" class="zone-btn" role="tab" id="tab-zone-medio" aria-selected="false" aria-controls="zoneDisplayCard" tabindex="-1" data-zone="medio">
+          <button type="button" class="zone-btn" role="tab" id="tab-zone-medio" aria-selected="false" aria-controls="panel-zone-medio" tabindex="-1" data-zone="medio">
             <div class="zone-btn-left">
               <h4>2. Terço Médio</h4>
               <p>Maçãs do rosto (malar), olheiras e sustentação</p>
@@ -759,56 +940,131 @@
             <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
           </button>
 
-          <button type="button" class="zone-btn" role="tab" id="tab-zone-inferior" aria-selected="false" aria-controls="zoneDisplayCard" tabindex="-1" data-zone="inferior">
+          <button type="button" class="zone-btn" role="tab" id="tab-zone-inferior" aria-selected="false" aria-controls="panel-zone-inferior" tabindex="-1" data-zone="inferior">
             <div class="zone-btn-left">
-              <h4>3. Terço Inferior & Papada</h4>
+              <h4>3. Terço Inferior &amp; Papada</h4>
               <p>Lipo de Papada HD, contorno de mandíbula, mento e lábios</p>
             </div>
             <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
           </button>
 
-          <button type="button" class="zone-btn" role="tab" id="tab-zone-sorriso" aria-selected="false" aria-controls="zoneDisplayCard" tabindex="-1" data-zone="sorriso">
+          <button type="button" class="zone-btn" role="tab" id="tab-zone-sorriso" aria-selected="false" aria-controls="panel-zone-sorriso" tabindex="-1" data-zone="sorriso">
             <div class="zone-btn-left">
-              <h4>4. Sorriso & Odontologia</h4>
+              <h4>4. Sorriso &amp; Odontologia</h4>
               <p>Prótese Total (&lt; 12h), Cirurgia de Siso, Clínico Geral e Lentes</p>
             </div>
             <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
           </button>
         </div>
 
-        <!-- Interactive Zone Display Card -->
-        <div class="zone-display-card" id="zoneDisplayCard" role="tabpanel" aria-labelledby="tab-zone-superior" aria-live="polite">
-          <div class="zone-display-header">
-            <h3 class="zone-title-main" id="zoneTitleMain">Terço Superior Facial</h3>
-            <span class="zone-badge-tag" id="zoneBadgeTag">Olhar & Testa</span>
-          </div>
+        <!-- Static Crawl-Ready Zone Display Panels (All 4 zones present in initial HTML for SEO & AI RAG) -->
+        <div class="zone-panels-wrapper" aria-live="polite">
+          <!-- Panel 1: Terço Superior -->
+          <article class="zone-display-card" id="panel-zone-superior" data-zone-panel="superior" role="tabpanel" aria-labelledby="tab-zone-superior">
+            <div class="zone-display-header">
+              <h3 class="zone-title-main">Terço Superior Facial</h3>
+              <span class="zone-badge-tag">Olhar &amp; Testa</span>
+            </div>
+            <p class="zone-description">
+              Região correspondente à fronte (testa), glabela (entre as sobrancelhas) e área periorbital. O foco é
+              suavizar linhas de expressão mímicas sem congelar o rosto, promovendo um arqueamento gracioso e olhar
+              descansado.
+            </p>
+            <ul class="zone-benefits-list">
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Suavização de rugas na testa e pés de galinha</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Elevação e arqueamento sutil de sobrancelhas</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Tratamento preventivo de linhas estáticas</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Aparência serena, jovem e descansada</li>
+            </ul>
+            <div class="zone-procedures-box">
+              <span class="zone-procedures-label">Procedimentos Indicados:</span>
+              <strong class="zone-procedures-text">Toxina Botulínica (Botox) • Skinbooster • Fios de Estímulo</strong>
+            </div>
+            <a href="https://wa.me/5511999901831?text=Ol%C3%A1,%20Dra.%20Amanda!%20Gostaria%20de%20avaliar%20especificamente%20a%20regi%C3%A3o%20do%20Ter%C3%A7o%20Superior%20Facial."
+              target="_blank" class="btn-luxury btn-gold" style="width: 100%;">
+              <i class="fa-brands fa-whatsapp"></i> Agendar Avaliação Desta Região
+            </a>
+          </article>
 
-          <p class="zone-description" id="zoneDescription">
-            Região correspondente à fronte (testa), glabela (entre as sobrancelhas) e área periorbital. O foco é
-            suavizar linhas de expressão mímicas sem congelar o rosto, promovendo um arqueamento gracioso e olhar
-            descansado.
-          </p>
+          <!-- Panel 2: Terço Médio -->
+          <article class="zone-display-card" id="panel-zone-medio" data-zone-panel="medio" role="tabpanel" aria-labelledby="tab-zone-medio" hidden>
+            <div class="zone-display-header">
+              <h3 class="zone-title-main">Terço Médio Facial</h3>
+              <span class="zone-badge-tag">Malar &amp; Olheiras</span>
+            </div>
+            <p class="zone-description">
+              Área de projeção das maçãs do rosto (zigomático), olheiras e fossa canina. A estruturação desta zona é o
+              segredo do efeito lifting natural e sustentação de todo o rosto, prevenindo a queda tecidual.
+            </p>
+            <ul class="zone-benefits-list">
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Reposição do volume malar e sustentação</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Atenuação de olheiras profundas e cansaço</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Efeito Lifting imediato na face média</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Contorno jovial e luminoso dos traços</li>
+            </ul>
+            <div class="zone-procedures-box">
+              <span class="zone-procedures-label">Procedimentos Indicados:</span>
+              <strong class="zone-procedures-text">Preenchimento com Ácido Hialurônico (MD Codes) • Bioestimuladores • Fios de Tração</strong>
+            </div>
+            <a href="https://wa.me/5511999901831?text=Ol%C3%A1,%20Dra.%20Amanda!%20Gostaria%20de%20avaliar%20especificamente%20a%20regi%C3%A3o%20do%20Ter%C3%A7o%20M%C3%A9dio%20Facial."
+              target="_blank" class="btn-luxury btn-gold" style="width: 100%;">
+              <i class="fa-brands fa-whatsapp"></i> Agendar Avaliação Desta Região
+            </a>
+          </article>
 
-          <ul class="zone-benefits-list" id="zoneBenefitsList">
-            <li><i class="fa-solid fa-circle-check"></i> Suavização de rugas na testa e pés de galinha</li>
-            <li><i class="fa-solid fa-circle-check"></i> Elevação e arqueamento sutil de sobrancelhas</li>
-            <li><i class="fa-solid fa-circle-check"></i> Tratamento preventivo de linhas estáticas</li>
-            <li><i class="fa-solid fa-circle-check"></i> Aparência serena, jovem e descansada</li>
-          </ul>
+          <!-- Panel 3: Terço Inferior & Cervical -->
+          <article class="zone-display-card" id="panel-zone-inferior" data-zone-panel="inferior" role="tabpanel" aria-labelledby="tab-zone-inferior" hidden>
+            <div class="zone-display-header">
+              <h3 class="zone-title-main">Terço Inferior &amp; Cervical</h3>
+              <span class="zone-badge-tag">Papada, Mandíbula &amp; Lábios</span>
+            </div>
+            <p class="zone-description">
+              Compreende a linha da mandíbula, mento (queixo), lábios e a região submentoniana (papada). É onde
+              alcançamos a maior definição de contorno e harmonia no perfil facial com a Lipo de Papada HD e escultura
+              labial.
+            </p>
+            <ul class="zone-benefits-list">
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Eliminação definitiva do excesso de papada</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Definição nítida da linha da mandíbula e queixo</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Escultura e hidratação labial proporcional</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Melhoria marcante do perfil facial e jovialidade</li>
+            </ul>
+            <div class="zone-procedures-box">
+              <span class="zone-procedures-label">Procedimentos Indicados:</span>
+              <strong class="zone-procedures-text">Lipoaspiração Mecânica de Papada • Preenchimento Labial/Mento • Bioestimulador de Pescoço</strong>
+            </div>
+            <a href="https://wa.me/5511999901831?text=Ol%C3%A1,%20Dra.%20Amanda!%20Gostaria%20de%20avaliar%20especificamente%20a%20regi%C3%A3o%20do%20Ter%C3%A7o%20Inferior%20e%20Papada."
+              target="_blank" class="btn-luxury btn-gold" style="width: 100%;">
+              <i class="fa-brands fa-whatsapp"></i> Agendar Avaliação Desta Região
+            </a>
+          </article>
 
-          <div
-            style="padding: 16px; background: rgba(226, 193, 124, 0.06); border: 1px dashed var(--border-subtle); border-radius: var(--radius-md); margin-bottom: 24px;">
-            <span
-              style="font-size: 0.85rem; font-weight: 600; color: var(--gold-300); text-transform: uppercase; letter-spacing: 0.08em; display: block; margin-bottom: 4px;">Procedimentos
-              Indicados:</span>
-            <strong id="zoneProcedures" style="color: var(--text-primary); font-size: 0.95rem;">Toxina Botulínica
-              (Botox) • Skinbooster • Fios de Estímulo</strong>
-          </div>
-
-          <a href="https://wa.me/5511999901831?text=Ol%C3%A1,%20Dra.%20Amanda!%20Gostaria%20de%20avaliar%20especificamente%20a%20regi%C3%A3o%20do%20Ter%C3%A7o%20Superior%20Facial."
-            id="zoneWhatsappBtn" target="_blank" class="btn-luxury btn-gold" style="width: 100%;">
-            <i class="fa-brands fa-whatsapp"></i> Agendar Avaliação Desta Região
-          </a>
+          <!-- Panel 4: Odontologia, Prótese 12h & Cirurgia Oral -->
+          <article class="zone-display-card" id="panel-zone-sorriso" data-zone-panel="sorriso" role="tabpanel" aria-labelledby="tab-zone-sorriso" hidden>
+            <div class="zone-display-header">
+              <h3 class="zone-title-main">Odontologia, Prótese 12h &amp; Cirurgia Oral</h3>
+              <span class="zone-badge-tag">Estética, Reabilitação &amp; Siso</span>
+            </div>
+            <p class="zone-description">
+              Cuidado odontológico completo aliando estética, cirurgia oral segura e reabilitação rápida. Da Prótese
+              Total confeccionada e entregue em menos de 12 horas (tudo em 1 dia) à Cirurgia de Siso humanizada, Clínico
+              Geral e Lentes de Porcelana.
+            </p>
+            <ul class="zone-benefits-list">
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Prótese Total em 1 Dia: entrega expressa em menos de 12 horas</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Cirurgia de Siso segura sob anestesia local e pós-operatório assistido</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Clínico Geral completo: check-up, profilaxia (limpeza) e restaurações</li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Lentes de Contato em Porcelana, Clareamento e Sorriso Gengival</li>
+            </ul>
+            <div class="zone-procedures-box">
+              <span class="zone-procedures-label">Procedimentos Indicados:</span>
+              <strong class="zone-procedures-text">Prótese Total (&lt; 12h) • Cirurgia de Siso • Clínico Geral • Lentes em Porcelana &amp; Clareamento</strong>
+            </div>
+            <a href="https://wa.me/5511999901831?text=Ol%C3%A1,%20Dra.%20Amanda!%20Gostaria%20de%20avaliar%20especificamente%20Pr%C3%B3tese%20Total%2012h,%20Cirurgia%20de%20Siso%20ou%20Odontologia."
+              target="_blank" class="btn-luxury btn-gold" style="width: 100%;">
+              <i class="fa-brands fa-whatsapp"></i> Agendar Avaliação Desta Região
+            </a>
+          </article>
         </div>
       </div>
     </div>
@@ -1092,7 +1348,9 @@
           <p class="about-text">
             Com olhar apurado para a tridimensionalidade e proporções áureas da face, a Dra. Amanda combina técnicas
             minimamente invasivas de lipoaspiração mecânica de papada, toxina botulínica e preenchedores de alta
-            biocompatibilidade para entregar resultados que resistem ao tempo com jovialidade e graça.
+            biocompatibilidade — todos com registro ativo na <strong>ANVISA</strong> e em estrita conformidade com a
+            <strong>Resolução CFO-198/2019</strong> do Conselho Federal de Odontologia — para entregar resultados que
+            resistem ao tempo com jovialidade e graça.
           </p>
 
           <div class="about-highlights">
@@ -1411,6 +1669,7 @@
       </div>
     </div>
   </section>
+  </main>
 
   <!-- Footer -->
   <footer class="footer">
@@ -1485,10 +1744,15 @@
       </div>
 
       <div class="footer-ethics">
-        Responsável Técnica: Dra. Amanda Botelho — Cirurgiã-Dentista • CROSP 146.264 | Clínica Odontológica CROSP PJ
-        033.654. As informações contidas neste site possuem caráter estritamente educativo e informativo, em
-        conformidade com as resoluções do Conselho Federal de Odontologia (CFO). Resultados podem variar de acordo com
-        características biológicas individuais.
+        Responsável Técnica e Revisão Clínica: <strong>Dra. Amanda Botelho</strong> — Cirurgiã-Dentista •
+        <a href="https://www.crosp.org.br/" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline;">CROSP 146.264</a> |
+        Clínica Odontológica CROSP PJ 033.654. As informações contidas neste site possuem caráter educativo e
+        informativo, em conformidade com a
+        <a href="https://website.cfo.org.br/" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline;">Resolução CFO-198/2019 do Conselho Federal de Odontologia (CFO)</a>
+        e insumos aprovados pela
+        <a href="https://www.gov.br/anvisa/pt-br" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline;">ANVISA</a>.
+        Conteúdo atualizado em <time datetime="2026-11-04">Novembro de 2026</time>. Resultados variam de acordo com a
+        avaliação clínica individual.
       </div>
 
       <div class="footer-bottom">
