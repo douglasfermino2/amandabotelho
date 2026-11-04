@@ -70,7 +70,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const filterValue = tab.getAttribute('data-filter');
 
     treatmentCards.forEach(card => {
-      if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+      const categories = (card.getAttribute('data-category') || '').split(/\s+/);
+      if (filterValue === 'all' || categories.includes(filterValue)) {
         card.style.display = 'flex';
         setTimeout(() => {
           card.style.opacity = '1';
@@ -138,16 +139,16 @@ document.addEventListener('DOMContentLoaded', () => {
       procedures: "Lipoaspiração Mecânica de Papada • Preenchimento Labial/Mento • Bioestimulador de Pescoço"
     },
     sorriso: {
-      title: "Harmonia Dental & Perioral",
-      tag: "Odontologia Estética",
-      desc: "A união perfeita entre a Odontologia e a Estética Facial. Tratamentos focados no design do sorriso, proporção áurea dental e controle muscular do sorriso gengival.",
+      title: "Odontologia, Prótese 12h & Cirurgia Oral",
+      tag: "Estética, Reabilitação & Siso",
+      desc: "Cuidado odontológico completo aliando estética, cirurgia oral segura e reabilitação rápida. Da Prótese Total confeccionada e entregue em menos de 12 horas (tudo em 1 dia) à Cirurgia de Siso humanizada, Clínico Geral e Lentes de Porcelana.",
       benefits: [
-        "Lentes de Contato Dental em Porcelana ultra-finas",
-        "Clareamento Dental de alta performance",
-        "Correção e harmonização de Sorriso Gengival",
-        "Alinhamento estético perfeitamente integrado à face"
+        "Prótese Total em 1 Dia: entrega expressa em menos de 12 horas",
+        "Cirurgia de Siso segura sob anestesia local e pós-operatório assistido",
+        "Clínico Geral completo: check-up, profilaxia (limpeza) e restaurações",
+        "Lentes de Contato em Porcelana, Clareamento e Sorriso Gengival"
       ],
-      procedures: "Lentes de Contato em Porcelana • Clareamento • Botox para Sorriso Gengival"
+      procedures: "Prótese Total (< 12h) • Cirurgia de Siso • Clínico Geral • Lentes em Porcelana & Clareamento"
     }
   };
 
