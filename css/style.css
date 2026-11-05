@@ -427,12 +427,46 @@ button, input, select, textarea {
 }
 
 .hero-lead {
-  font-size: 1.12rem;
+  font-size: 1.08rem;
   color: var(--text-secondary);
-  margin-bottom: 34px;
-  line-height: 1.7;
-  font-weight: 300;
-  max-width: 580px;
+  margin-bottom: 20px;
+  line-height: 1.68;
+  font-weight: 400;
+  max-width: 560px;
+}
+
+.hero-lead strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.hero-specialties {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 30px;
+  max-width: 100%;
+}
+
+.hero-spec-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(154, 116, 48, 0.24);
+  border-radius: var(--radius-full);
+  padding: 6px 13px;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(28, 27, 24, 0.03);
+}
+
+.hero-spec-chip i {
+  font-size: 0.68rem;
+  color: var(--gold-400);
 }
 
 .hero-highlight-pill {
@@ -2519,7 +2553,8 @@ body {
 
 .hero-content > .section-tag { animation-delay: 0.05s; }
 .hero-content > .hero-headline { animation-delay: 0.14s; }
-.hero-content > .hero-lead { animation-delay: 0.24s; }
+.hero-content > .hero-lead { animation-delay: 0.22s; }
+.hero-content > .hero-specialties { animation-delay: 0.28s; }
 .hero-content > .hero-cta-group { animation-delay: 0.34s; }
 .hero-content > .hero-credentials-strip { animation-delay: 0.44s; }
 
@@ -3088,20 +3123,25 @@ textarea:focus-visible {
     order: 3;
   }
 
-  .hero-content > .hero-cta-group {
+  .hero-content > .hero-specialties {
     order: 4;
+    justify-content: center;
+  }
+
+  .hero-content > .hero-cta-group {
+    order: 5;
     margin-bottom: 32px;
   }
 
   .hero-visual-wrapper {
-    order: 5;
+    order: 6;
     width: 100%;
     max-width: 540px;
     margin-bottom: 28px;
   }
 
   .hero-content > .hero-credentials-strip {
-    order: 6;
+    order: 7;
   }
 }
 
@@ -3109,6 +3149,11 @@ textarea:focus-visible {
   .hero-grid {
     align-items: flex-start;
     text-align: left;
+  }
+
+  .hero-content > .hero-specialties {
+    justify-content: flex-start;
+    margin-bottom: 22px;
   }
 
   .hero-content > .hero-cta-group {
