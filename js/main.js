@@ -1,4 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // 0. Analytics Helper (Google Analytics 4 + Google Tag Manager / Google Ads)
+  function trackEvent(eventName, params = {}) {
+    try {
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', eventName, params);
+      } else if (Array.isArray(window.dataLayer)) {
+        window.dataLayer.push({ event: eventName, ...params });
+      }
+    } catch (_) {
+      // Ignore tracking errors to never block UI
+    }
+  }
+
   // 1. Sticky Navbar & Scroll Spy
   const navbar = document.querySelector('.navbar');
   const navLinks = document.querySelectorAll('.nav-link');
@@ -68,6 +81,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     const filterValue = tab.getAttribute('data-filter');
+    trackEvent('filter_treatment', {
+      category_code: filterValue || 'all',
+      category_label: (tab.textContent || '').trim()
+    });
 
     treatmentCards.forEach(card => {
       const categories = (card.getAttribute('data-category') || '').split(/\s+/);
@@ -106,6 +123,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function activateZone(btn) {
     const zoneKey = btn.getAttribute('data-zone');
+    const zoneTitle = btn.querySelector('h4')?.textContent?.trim() || zoneKey;
+    trackEvent('facial_zone_select', {
+      zone_id: zoneKey,
+      zone_name: zoneTitle
+    });
 
     zoneBtns.forEach(b => {
       const isSelected = b === btn;
@@ -162,6 +184,12 @@ document.addEventListener('DOMContentLoaded', () => {
       const baseText = `Olá, Dra. Amanda Botelho! Preenchi o simulador no site e gostaria de uma avaliação personalizada em Alphaville.\n\n✨ Área de interesse: ${quizState.queixa}\n💎 Perfil desejado: ${quizState.resultado}\n📅 Previsão: ${quizState.prazo}\n\nGostaria de agendar uma consulta para conversarmos.`;
       const encodedMsg = encodeURIComponent(baseText);
       btnQuizWhatsapp.href = `https://wa.me/5511999901831?text=${encodedMsg}`;
+
+      trackEvent('quiz_complete', {
+        queixa: quizState.queixa,
+        resultado: quizState.resultado,
+        prazo: quizState.prazo
+      });
     }
   }
 
@@ -182,6 +210,11 @@ document.addEventListener('DOMContentLoaded', () => {
       if (stepNum === 1) quizState.queixa = val;
       if (stepNum === 2) quizState.resultado = val;
       if (stepNum === 3) quizState.prazo = val;
+
+      trackEvent('quiz_option_select', {
+        step_number: stepNum,
+        selected_value: val
+      });
     });
   });
 
@@ -189,6 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', () => {
       if (quizState.step < 4) {
         quizState.step++;
+        trackEvent('quiz_step_view', { step_number: quizState.step });
         updateQuizDisplay();
       }
     });
@@ -217,6 +251,8 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!isActive) {
         item.classList.add('active');
         question.setAttribute('aria-expanded', 'true');
+        const qText = question.querySelector('span')?.textContent?.trim() || 'FAQ';
+        trackEvent('faq_open', { question_text: qText });
       }
     });
   });
@@ -229,6 +265,107 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.href = `https://wa.me/5511999901831?text=${encodeURIComponent(text)}`;
     });
   });
+
+  // 6.1 Global Conversion & Interaction Tracking (WhatsApp, Maps, Instagram, Comparison Table & Section Views)
+  document.querySelectorAll('a[href*="wa.me"], .btn-lead-procedure, #btnQuizWhatsapp').forEach(link => {
+    link.addEventListener('click', () => {
+      let locationLabel = 'Site Geral';
+      let procedureInterest = link.getAttribute('data-procedure') || 'Avaliação Geral';
+
+      if (link.classList.contains('nav-cta-btn')) {
+        locationLabel = 'Menu Topo';
+      } else if (link.classList.contains('floating-whatsapp-btn')) {
+        locationLabel = 'Botão Flutuante WhatsApp';
+      } else if (link.id === 'btnQuizWhatsapp') {
+        locationLabel = 'Resultado do Simulador';
+        procedureInterest = quizState.queixa;
+      } else if (link.classList.contains('btn-lead-procedure')) {
+        locationLabel = 'Card de Procedimento';
+      } else if (link.closest('#inicio')) {
+        locationLabel = 'Hero Principal';
+      } else if (link.closest('#zonas-faciais')) {
+        locationLabel = 'Guia Anatômico Facial';
+        procedureInterest = link.closest('.zone-display-card')?.querySelector('.zone-title-main')?.textContent?.trim() || 'Região Facial';
+      } else if (link.closest('#sobre')) {
+        locationLabel = 'Seção Sobre a Dra.';
+      } else if (link.closest('#clinica')) {
+        locationLabel = 'Seção Clínica Alphaville';
+      } else if (link.closest('.cta-vip-section')) {
+        locationLabel = 'Banner VIP Final';
+      } else if (link.closest('.footer')) {
+        locationLabel = 'Rodapé';
+      }
+
+      const eventPayload = {
+        button_location: locationLabel,
+        procedure_interest: procedureInterest
+      };
+
+      trackEvent('whatsapp_click', eventPayload);
+      trackEvent('generate_lead', {
+        event_category: 'WhatsApp',
+        event_label: `${locationLabel} - ${procedureInterest}`,
+        ...eventPayload
+      });
+    });
+  });
+
+  // Track Google Maps & Instagram clicks
+  document.querySelectorAll('a[href*="maps.app.goo.gl"], a[href*="google.com/maps"]').forEach(mapLink => {
+    mapLink.addEventListener('click', () => {
+      const loc = mapLink.closest('.footer') ? 'Rodapé' : 'Seção Clínica';
+      trackEvent('maps_click', { button_location: loc });
+    });
+  });
+
+  document.querySelectorAll('a[href*="instagram.com"]').forEach(igLink => {
+    igLink.addEventListener('click', () => {
+      let loc = 'Site';
+      if (igLink.closest('#sobre')) loc = 'Seção Sobre a Dra.';
+      else if (igLink.closest('.cta-vip-section')) loc = 'Banner VIP Final';
+      else if (igLink.closest('.footer')) loc = 'Rodapé';
+      trackEvent('instagram_click', { button_location: loc });
+    });
+  });
+
+  // Track Comparison Table Toggle
+  const comparisonDetails = document.querySelector('.comparison-table-wrapper');
+  if (comparisonDetails) {
+    comparisonDetails.addEventListener('toggle', () => {
+      if (comparisonDetails.open) {
+        trackEvent('comparison_table_open', { section: 'procedimentos' });
+      }
+    });
+  }
+
+  // Track Section Visibility (which sections visitors actually stop to read vs skip)
+  if ('IntersectionObserver' in window) {
+    const seenSections = new Set();
+    const sectionTimers = new Map();
+    const trackedSections = document.querySelectorAll('section[id], .pillars-section, .testimonials-section, .cta-vip-section');
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const el = entry.target;
+        const sectionKey = el.id || el.className.split(' ')[0];
+        if (seenSections.has(sectionKey)) return;
+
+        if (entry.isIntersecting) {
+          const timer = setTimeout(() => {
+            seenSections.add(sectionKey);
+            trackEvent('section_view', { section_name: sectionKey });
+            sectionObserver.unobserve(el);
+          }, 1500);
+          sectionTimers.set(sectionKey, timer);
+        } else if (sectionTimers.has(sectionKey)) {
+          clearTimeout(sectionTimers.get(sectionKey));
+          sectionTimers.delete(sectionKey);
+        }
+      });
+    }, { threshold: 0.35 });
+
+    trackedSections.forEach(sec => sectionObserver.observe(sec));
+  }
 
   // 7. Subtle Hero Portrait Parallax (disabled when prefers-reduced-motion is active)
   const hero = document.getElementById('inicio');
