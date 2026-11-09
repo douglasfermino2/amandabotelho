@@ -307,6 +307,10 @@ document.addEventListener('DOMContentLoaded', () => {
         event_label: `${locationLabel} - ${procedureInterest}`,
         ...eventPayload
       });
+      // Google Ads "Clique no WhatsApp" official conversion action
+      trackEvent('conversion', {
+        send_to: 'AW-18564028677/vmiKCNXllbUdEIWygpRF'
+      });
     });
   });
 
